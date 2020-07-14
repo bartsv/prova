@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('profile');
+    Route::get('/', 'TasksController@index')->name('profile');
 
-            
+
 
     Route::post('/task', 'TasksController@store');
     Route::resource('task', 'TasksController');
