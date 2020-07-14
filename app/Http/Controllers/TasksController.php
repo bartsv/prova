@@ -16,7 +16,9 @@ class TasksController extends Controller
     public function index()
     {
         $List = Tasks::orderBy('id', 'asc')->get();
-        return view('layouts.list')->with('List',compact($List));
+        return view('layouts.list', [
+            'List' => $List
+        ]);
     }
 
     /**

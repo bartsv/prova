@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
     Route::get('/', 'TasksController@index')->name('profile');
+/*Route::get('/', function () {
+    $List = \App\Tasks::orderBy('created_at', 'asc')->get();
 
+    return view('layouts.list', [
+        'List' => $List
+    ]);
+});*/
 
 
     Route::post('/task', 'TasksController@store');
