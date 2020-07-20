@@ -1,7 +1,8 @@
 @extends('welcome')
 
 @section('list')
-
+    @component('layouts.tasks')
+    @endcomponent
     <!-- Current Tasks -->
     @if (count($List) > 0)
         <div class="panel panel-default">
@@ -26,9 +27,13 @@
                                 <td class="table-text">
                                     <div>{{ $t->title }}</div>
                                 </td>
-
                                 <td>
-                                    <!-- TODO: Delete Button -->
+                                    <form action="/task/{{ $t->id }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+
+                                        <button>Delete Task</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

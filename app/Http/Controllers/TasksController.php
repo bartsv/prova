@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
     use App\Task;
-    use App\Tasks;
     use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\View;
@@ -14,11 +13,13 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $List = Tasks::orderBy('id', 'asc')->get();
+    {/*
+        $List = Task::orderBy('id', 'asc')->get();
+    //    Log::debug($List);
         return view('layouts.list', [
             'List' => $List
-        ]);
+        ]);*/
+        return View::make('welcome');
     }
 
     /**
@@ -41,7 +42,7 @@ class TasksController extends Controller
     {/**/
 
       //  $this->validate($request, Task::$rules);
-        Tasks::create($request->all());
+        Task::create($request->all());
         return redirect()->route('profile');
     }
 
@@ -87,6 +88,8 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::findOrFail($id)->delete();
+        return redirect()->route('profile');
+
     }
 }
